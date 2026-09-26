@@ -1,3 +1,886 @@
+
+
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>S & F — Wararka Soomaaliya</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial, sans-serif;
+  background:#f3f5f7;
+  color:#17212b;
+}
+
+header{
+  background:#071d2d;
+  color:white;
+  padding:16px 5%;
+}
+
+.top{
+  max-width:1200px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:32px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#e9b949;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-weight:bold;
+}
+
+nav a:hover{
+  color:#e9b949;
+}
+
+.breaking{
+  background:#d71920;
+  color:white;
+  padding:10px 5%;
+  font-weight:bold;
+  overflow:hidden;
+}
+
+.container{
+  max-width:1200px;
+  margin:auto;
+  padding:25px 5%;
+}
+
+.hero{
+  background:linear-gradient(135deg,#071d2d,#14506f);
+  color:white;
+  border-radius:18px;
+  padding:35px 25px;
+  margin-bottom:25px;
+}
+
+.hero h1{
+  font-size:38px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  color:#dce8ef;
+}
+
+.clock{
+  margin-top:15px;
+  color:#e9b949;
+  font-weight:bold;
+}
+
+.section-title{
+  border-left:6px solid #d71920;
+  padding-left:12px;
+  margin:30px 0 18px;
+  font-size:27px;
+}
+
+.search{
+  width:100%;
+  padding:14px;
+  border:1px solid #ccd3d8;
+  border-radius:10px;
+  font-size:16px;
+  margin-bottom:18px;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.categories button{
+  border:0;
+  background:#071d2d;
+  color:white;
+  padding:9px 14px;
+  border-radius:7px;
+  cursor:pointer;
+}
+
+.categories button:hover{
+  background:#d71920;
+}
+
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
+  transition:.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+}
+
+.card-top{
+  height:8px;
+  background:#d71920;
+}
+
+.card-body{
+  padding:20px;
+}
+
+.badge{
+  display:inline-block;
+  background:#071d2d;
+  color:white;
+  padding:4px 9px;
+  border-radius:5px;
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.date{
+  color:#777;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.card h2{
+  font-size:20px;
+  line-height:1.4;
+  margin-bottom:9px;
+}
+
+.card p{
+  color:#59636b;
+  font-size:14px;
+}
+
+.read{
+  display:inline-block;
+  margin-top:15px;
+  background:#d71920;
+  color:white;
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:7px;
+  font-weight:bold;
+}
+
+.archive{
+  background:white;
+  padding:17px;
+  border-radius:10px;
+  margin-bottom:10px;
+  border-left:4px solid #071d2d;
+  cursor:pointer;
+}
+
+.archive:hover{
+  background:#eef2f5;
+}
+
+.article{
+  display:none;
+  background:white;
+  padding:28px;
+  border-radius:14px;
+}
+
+.article h1{
+  font-size:34px;
+  margin:10px 0;
+}
+
+.article-text{
+  font-size:18px;
+  line-height:1.9;
+  margin-top:20px;
+}
+
+.back{
+  display:inline-block;
+  background:#071d2d;
+  color:white;
+  text-decoration:none;
+  padding:9px 14px;
+  border-radius:7px;
+}
+
+footer{
+  background:#071d2d;
+  color:white;
+  text-align:center;
+  padding:35px 15px;
+  margin-top:40px;
+}
+
+footer strong{
+  color:#e9b949;
+}
+
+@media(max-width:800px){
+
+  .top{
+    flex-direction:column;
+    gap:12px;
+  }
+
+  nav a{
+    margin:0 7px;
+    font-size:14px;
+  }
+
+  .hero h1{
+    font-size:28px;
+  }
+
+  .news-grid{
+    grid-template-columns:1fr;
+  }
+
+  .article h1{
+    font-size:26px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+
+    <div class="logo">
+      S <span>&</span> F
+    </div>
+
+    <nav>
+      <a href="#" onclick="home()">Bogga Hore</a>
+      <a href="#today">Maanta</a>
+      <a href="#archive">Kaydka</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="breaking">
+  🔴 DEG DEG — S & F | Wararka iyo Warbixinada Soomaaliya
+</div>
+
+<main class="container">
+
+<section id="home">
+
+  <div class="hero">
+
+    <h1>Wararka Soomaaliya</h1>
+
+    <p>
+      S & F — Wararka, dhacdooyinka iyo warbixinada
+      Soomaaliya iyo caalamka.
+    </p>
+
+    <div class="clock" id="clock"></div>
+
+  </div>
+
+  <input
+    class="search"
+    id="search"
+    placeholder="🔎 Raadi war..."
+    onkeyup="searchNews()"
+  >
+
+  <div class="categories">
+    <button onclick="filterNews('Dhammaan')">Dhammaan</button>
+    <button onclick="filterNews('Soomaaliya')">Soomaaliya</button>
+    <button onclick="filterNews('Amni')">Amni</button>
+    <button onclick="filterNews('Siyaasad')">Siyaasad</button>
+    <button onclick="filterNews('Dhaqaale')">Dhaqaale</button>
+    <button onclick="filterNews('Ciyaaro')">Ciyaaro</button>
+    <button onclick="filterNews('Bulsho')">Bulsho</button>
+  </div>
+
+  <h2 class="section-title" id="today">
+    📰 Wararka Maanta
+  </h2>
+
+  <div class="news-grid" id="todayNews"></div>
+
+  <h2 class="section-title" id="archive">
+    📚 Wararkii Hore
+  </h2>
+
+  <div id="oldNews"></div>
+
+</section>
+
+
+<section class="article" id="article">
+
+  <a href="#" class="back" onclick="home()">
+    ← Dib ugu noqo
+  </a>
+
+  <div id="articleContent"></div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <h2>S <strong>&</strong> F</h2>
+
+  <p>
+    Wararka iyo Warbixinada Soomaaliya
+  </p>
+
+  <p>
+    © 2026 S & F
+  </p>
+
+</footer>
+
+
+<script>
+
+/*
+==================================================
+ WARARKA S & F
+==================================================
+*/
+
+const news = [
+
+{
+ id:1,
+
+ title:"Penalty iyo gool dambe oo Soomaaliya ku riday guuldarro",
+
+ category:"Ciyaaro",
+
+ date:"2026-09-26",
+
+ summary:
+ "War cusub oo ku saabsan xulka Soomaaliya iyo isreebreebka AFCON.",
+
+ content:
+ `
+ <p>
+ Warbixin cusub oo la daabacay 26 Sebtembar 2026
+ ayaa ka hadlaysa kulankii xulka Soomaaliya ee
+ isreebreebka AFCON.
+ </p>
+
+ <p>
+ Sida ay sheegtay FTL Somalia, penalty iyo gool
+ dambe ayaa sababay in Soomaaliya ay kulanka
+ ku lumiso.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> FTL Somalia
+ </p>
+ `
+},
+
+
+{
+ id:2,
+
+ title:"NISA waxay sheegtay hawlgal ka dhacay Shabeellaha Dhexe",
+
+ category:"Amni",
+
+ date:"2026-09-26",
+
+ summary:
+ "NISA ayaa sheegtay in hawlgal qorshaysan laga sameeyay deegaanka Bur Saruur.",
+
+ content:
+ `
+ <p>
+ Hay’adda NISA ayaa sheegtay in hawlgal qorshaysan
+ laga sameeyay deegaanka Bur Saruur ee gobolka
+ Shabeellaha Dhexe.
+ </p>
+
+ <p>
+ Sida lagu sheegay warbixinta FTL Somalia, hay’addu
+ waxay sheegtay in hawlgalku bartilmaameedsaday
+ kulan ay lahaayeen xubno Al-Shabaab ah.
+ </p>
+
+ <p>
+ Tirada khasaaraha iyo faahfaahinta hawlgalkan waa
+ sheegashada hay’adda amniga ee lagu soo tebiyay
+ warbixinta.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> FTL Somalia
+ </p>
+ `
+},
+
+
+{
+ id:3,
+
+ title:"Madasha Bani’aadannimada Soomaaliya oo diiradda saartay El Niño",
+
+ category:"Bulsho",
+
+ date:"2026-09-25",
+
+ summary:
+ "Shirka Madasha Bani’aadannimada Soomaaliya ayaa Muqdisho lagu soo xiray.",
+
+ content:
+ `
+ <p>
+ Shirka Madasha Bani’aadannimada Soomaaliya ayaa
+ Muqdisho lagu soo xiray 25 Sebtembar 2026.
+ </p>
+
+ <p>
+ Warbixinnadu waxay sheegeen in diiradda lagu saaray
+ diyaar-garowga saameynta cimilada iyo El Niño.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> Shabelle Media Network
+ </p>
+ `
+},
+
+
+{
+ id:4,
+
+ title:"Soomaaliya iyo WFP oo heshiis cusub ka gaaray diyaar-garowga musiibooyinka",
+
+ category:"Soomaaliya",
+
+ date:"2026-09-25",
+
+ summary:
+ "Soomaaliya iyo WFP ayaa heshiis iskaashi ah ka saxiixday diyaar-garowga musiibooyinka.",
+
+ content:
+ `
+ <p>
+ Soomaaliya iyo Barnaamijka Cunnada Adduunka ee WFP
+ ayaa 24 Sebtembar 2026 kala saxiixday heshiis
+ lagu xoojinayo maaraynta iyo diyaar-garowga
+ musiibooyinka.
+ </p>
+
+ <p>
+ Heshiisku wuxuu la xiriiraa xoojinta awoodda
+ dalka ee diyaar-garowga iyo ka jawaabista
+ musiibooyinka.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> Shabelle Media Network
+ </p>
+ `
+},
+
+
+{
+ id:5,
+
+ title:"SOMIPEX iyo astaanta Made in Somalia",
+
+ category:"Dhaqaale",
+
+ date:"2026-09-25",
+
+ summary:
+ "Muqdisho waxaa lagu qabtay SOMIPEX iyadoo la soo bandhigay astaanta Made in Somalia.",
+
+ content:
+ `
+ <p>
+ Muqdisho ayaa 25 Sebtembar 2026 martigelisay
+ SOMIPEX, iyadoo Soomaaliya ay soo bandhigtay
+ astaanta “Made in Somalia”.
+ </p>
+
+ <p>
+ Ujeeddadu waxay la xiriirtaa kor u qaadista
+ wax-soo-saarka gudaha iyo ganacsiga dalka.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> FTL Somalia
+ </p>
+ `
+},
+
+
+{
+ id:6,
+
+ title:"Soomaaliya iyo Liibiya oo xoojinaya iskaashiga",
+
+ category:"Soomaaliya",
+
+ date:"2026-09-25",
+
+ summary:
+ "Labada dal ayaa ka wada hadlay iskaashiga la xiriira socdaalka iyo arrimaha muwaadiniinta.",
+
+ content:
+ `
+ <p>
+ Soomaaliya iyo Liibiya ayaa ka wada hadlay
+ xoojinta iskaashiga labada dal, gaar ahaan
+ arrimaha socdaalka iyo muwaadiniinta.
+ </p>
+
+ <p>
+ Warkan waxaa lagu daabacay warbixinnada
+ 25 Sebtembar 2026.
+ </p>
+
+ <p>
+ <strong>Xigasho:</strong> FTL Somalia
+ </p>
+ `
+
+}
+
+];
+
+
+/*
+==================================================
+ TAARIIKHDA SOOMAALIYA
+==================================================
+*/
+
+function today(){
+
+ return new Intl.DateTimeFormat("en-CA",{
+   timeZone:"Africa/Mogadishu",
+   year:"numeric",
+   month:"2-digit",
+   day:"2-digit"
+ }).format(new Date());
+
+}
+
+
+/*
+==================================================
+ SAACADDA
+==================================================
+*/
+
+function clock(){
+
+ const now = new Date();
+
+ const time =
+ now.toLocaleTimeString("so-SO",{
+   timeZone:"Africa/Mogadishu",
+   hour:"2-digit",
+   minute:"2-digit",
+   second:"2-digit"
+ });
+
+ const date =
+ now.toLocaleDateString("so-SO",{
+   timeZone:"Africa/Mogadishu",
+   year:"numeric",
+   month:"long",
+   day:"numeric"
+ });
+
+ document.getElementById("clock").innerHTML =
+ "📅 " + date + " &nbsp; | &nbsp; 🕐 " + time;
+
+}
+
+setInterval(clock,1000);
+clock();
+
+
+/*
+==================================================
+ CARD
+==================================================
+*/
+
+function card(item){
+
+ return `
+
+ <article class="card">
+
+   <div class="card-top"></div>
+
+   <div class="card-body">
+
+     <span class="badge">
+       ${item.category}
+     </span>
+
+     <div class="date">
+       📅 ${item.date}
+     </div>
+
+     <h2>
+       ${item.title}
+     </h2>
+
+     <p>
+       ${item.summary}
+     </p>
+
+     <a
+       href="#"
+       class="read"
+       onclick="read(${item.id})"
+     >
+       Akhri Warka →
+     </a>
+
+   </div>
+
+ </article>
+
+ `;
+
+}
+
+
+/*
+==================================================
+ SOO BANDHIG
+==================================================
+*/
+
+function render(list=news){
+
+ const t = today();
+
+ const todayNews =
+ list.filter(x => x.date === t);
+
+ const oldNews =
+ list.filter(x => x.date !== t);
+
+
+ document.getElementById("todayNews").innerHTML =
+ todayNews.length
+ ?
+ todayNews.map(card).join("")
+ :
+ "<p>Maanta weli war cusub lama darin.</p>";
+
+
+ document.getElementById("oldNews").innerHTML =
+ oldNews.map(x => `
+
+ <div
+   class="archive"
+   onclick="read(${x.id})"
+ >
+
+   <strong>${x.title}</strong>
+
+   <br>
+
+   <small>
+     ${x.category} — ${x.date}
+   </small>
+
+ </div>
+
+ `).join("");
+
+}
+
+
+/*
+==================================================
+ AKHRI WARKA
+==================================================
+*/
+
+function read(id){
+
+ const item =
+ news.find(x => x.id === id);
+
+ if(!item) return;
+
+
+ document.getElementById("home").style.display =
+ "none";
+
+ document.getElementById("article").style.display =
+ "block";
+
+
+ document.getElementById("articleContent").innerHTML = `
+
+   <span class="badge">
+     ${item.category}
+   </span>
+
+   <h1>
+     ${item.title}
+   </h1>
+
+   <div class="date">
+     📅 ${item.date}
+   </div>
+
+   <div class="article-text">
+     ${item.content}
+   </div>
+
+ `;
+
+ window.scrollTo(0,0);
+
+}
+
+
+/*
+==================================================
+ BOGGA HORE
+==================================================
+*/
+
+function home(){
+
+ document.getElementById("article").style.display =
+ "none";
+
+ document.getElementById("home").style.display =
+ "block";
+
+ window.scrollTo(0,0);
+
+}
+
+
+/*
+==================================================
+ SEARCH
+==================================================
+*/
+
+function searchNews(){
+
+ const value =
+ document.getElementById("search")
+ .value
+ .toLowerCase();
+
+ if(!value){
+
+   render(news);
+   return;
+
+ }
+
+ const result =
+ news.filter(x =>
+
+   x.title.toLowerCase().includes(value) ||
+
+   x.category.toLowerCase().includes(value) ||
+
+   x.summary.toLowerCase().includes(value)
+
+ );
+
+ render(result);
+
+}
+
+
+/*
+==================================================
+ CATEGORY
+==================================================
+*/
+
+function filterNews(category){
+
+ if(category === "Dhammaan"){
+
+   render(news);
+   return;
+
+ }
+
+ const result =
+ news.filter(x =>
+   x.category === category
+ );
+
+ render(result);
+
+}
+
+
+/*
+==================================================
+ BILOW
+==================================================
+*/
+
+render();
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="so">
 <head>
