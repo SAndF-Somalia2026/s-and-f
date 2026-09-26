@@ -3,84 +3,230 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S & F | Xaaladda Soomaaliya</title>
+
+  <title>S & F - Wararka Soomaaliya</title>
+
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: Arial, sans-serif; background:#f4f7f9; color:#17212b; line-height:1.6; }
-    header { background:linear-gradient(135deg,#0b7a5b,#07523f); color:white; padding:22px 7%; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10; }
-    .logo { font-size:30px; font-weight:800; }
-    nav a { color:white; text-decoration:none; margin-left:22px; font-weight:bold; }
-    .hero { padding:85px 7%; text-align:center; background:linear-gradient(rgba(5,60,46,.88),rgba(5,60,46,.88)), url('https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=1600&q=80') center/cover; color:white; }
-    .hero h1 { font-size:48px; margin-bottom:12px; }
-    .hero p { max-width:720px; margin:auto; font-size:19px; }
-    .btn { display:inline-block; margin-top:25px; padding:12px 22px; background:white; color:#07523f; border-radius:8px; text-decoration:none; font-weight:bold; }
-    .container { max-width:1100px; margin:auto; padding:55px 7%; }
-    .title { text-align:center; margin-bottom:30px; color:#07523f; font-size:32px; }
-    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; }
-    .card { background:white; padding:25px; border-radius:14px; box-shadow:0 5px 18px rgba(0,0,0,.08); }
-    .card h3 { color:#0b7a5b; margin-bottom:8px; }
-    .about { background:white; }
-    footer { background:#063b2f; color:white; text-align:center; padding:28px; }
-    @media(max-width:700px){ header{display:block;text-align:center} nav{margin-top:12px} nav a{margin:0 7px;font-size:14px}.hero h1{font-size:36px} }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      color: #17202a;
+      line-height: 1.7;
+    }
+
+    header {
+      background: #0b3d2e;
+      color: white;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    header h1 {
+      font-size: 36px;
+      margin-bottom: 5px;
+    }
+
+    header p {
+      font-size: 16px;
+    }
+
+    nav {
+      background: #082d23;
+      text-align: center;
+      padding: 14px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+
+    .title {
+      margin-bottom: 20px;
+      font-size: 27px;
+    }
+
+    .news {
+      background: white;
+      margin-bottom: 20px;
+      padding: 22px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .category {
+      display: inline-block;
+      background: #e7f3ee;
+      color: #0b6b4f;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .news h2 {
+      font-size: 23px;
+      margin-bottom: 7px;
+      line-height: 1.35;
+    }
+
+    .date {
+      color: #777;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .source {
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .source a {
+      color: #0b6b4f;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #082d23;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 28px;
+      }
+
+      nav a {
+        margin: 0 6px;
+        font-size: 14px;
+      }
+
+      .news h2 {
+        font-size: 20px;
+      }
+    }
   </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">S & F</div>
-  <nav>
-    <a href="#home">Bogga Hore</a>
-    <a href="#xaalad">Xaaladda</a>
-    <a href="#warar">Warar</a>
-    <a href="#xog">Xog</a>
-  </nav>
+  <h1>S & F</h1>
+  <p>Wararka iyo Xogta Soomaaliya</p>
 </header>
 
-<section class="hero" id="home">
-  <h1>S & F</h1>
-  <p>Goob lagu soo bandhigo macluumaad, warbixinno iyo arrimo la xiriira xaaladda Soomaaliya.</p>
-  <a class="btn" href="#xaalad">Wax badan ka ogow</a>
-</section>
+<nav>
+  <a href="#">Bogga Hore</a>
+  <a href="#wararka">Wararka</a>
+  <a href="#xog">Xog</a>
+</nav>
 
-<section class="container" id="xaalad">
-  <h2 class="title">Xaaladda Soomaaliya</h2>
-  <div class="cards">
-    <div class="card">
-      <h3>🏛️ Siyaasadda</h3>
-      <p>Warbixinno iyo xog ku saabsan arrimaha siyaasadeed iyo maamulka dalka.</p>
-    </div>
-    <div class="card">
-      <h3>🛡️ Amniga</h3>
-      <p>Macluumaad ku saabsan xaaladda amniga iyo dhacdooyinka muhiimka ah.</p>
-    </div>
-    <div class="card">
-      <h3>📈 Dhaqaalaha</h3>
-      <p>Xog ku saabsan dhaqaalaha, ganacsiga iyo horumarka dalka.</p>
-    </div>
-    <div class="card">
-      <h3>👨‍👩‍👧‍👦 Bulshada</h3>
-      <p>Arrimaha bulshada, waxbarashada, caafimaadka iyo nolosha dadka.</p>
-    </div>
-  </div>
-</section>
+<main class="container" id="wararka">
 
-<section class="container about" id="warar">
-  <h2 class="title">Warar & Warbixinno</h2>
-  <div class="card">
-    <h3>Ku soo dhowow S & F</h3>
-    <p>Qaybtan waxaad ku dari kartaa wararka cusub iyo warbixinno aad adigu qorto. Xogta muhiimka ah waa in laga hubiyaa ilo lagu kalsoon yahay.</p>
-  </div>
-</section>
+  <h2 class="title">📰 Wararkii Ugu Dambeeyay</h2>
 
-<section class="container" id="xog">
-  <h2 class="title">Maxay tahay S & F?</h2>
-  <div class="card">
-    <p>S & F waa website loogu talagalay in si fudud loo akhriyo loona fahmo macluumaadka ku saabsan Soomaaliya.</p>
-  </div>
-</section>
+  <article class="news">
+    <span class="category">SIYAASAD</span>
+
+    <h2>Madaxweyne Xasan Sheekh oo ka hadlay arrimaha Soomaaliya</h2>
+
+    <p class="date">26 Sebtembar 2026</p>
+
+    <p>
+      Halkan waxaad ku qori kartaa wararka cusub ee Soomaaliya.
+      Ku dar faahfaahinta warka, goobta uu ka dhacay iyo xogta
+      la xaqiijiyey.
+    </p>
+
+    <p class="source">
+      Isha:
+      <a href="#" target="_blank">Akhriso isha warka</a>
+    </p>
+  </article>
+
+
+  <article class="news">
+    <span class="category">AMNI</span>
+
+    <h2>War cusub oo ku saabsan amniga Soomaaliya</h2>
+
+    <p class="date">26 Sebtembar 2026</p>
+
+    <p>
+      Qoraalka wararka amniga ku qor halkan. Hubi in xogtu ka timid
+      ilo lagu kalsoon yahay ka hor intaadan daabicin.
+    </p>
+
+    <p class="source">
+      Isha:
+      <a href="#" target="_blank">Akhriso isha warka</a>
+    </p>
+  </article>
+
+
+  <article class="news">
+    <span class="category">BANI'AADANNIMO</span>
+
+    <h2>Xaaladda bani'aadannimo ee Soomaaliya</h2>
+
+    <p class="date">26 Sebtembar 2026</p>
+
+    <p>
+      Halkan ku qor wararka ku saabsan gargaarka, barakacayaasha,
+      cuntada iyo xaaladaha bani'aadannimo.
+    </p>
+
+    <p class="source">
+      Isha:
+      <a href="#" target="_blank">Akhriso isha warka</a>
+    </p>
+  </article>
+
+
+  <article class="news">
+    <span class="category">DHAQAALO</span>
+
+    <h2>Wararka dhaqaalaha Soomaaliya</h2>
+
+    <p class="date">26 Sebtembar 2026</p>
+
+    <p>
+      Halkan ku qor wararka ganacsiga, dhaqaalaha iyo horumarka
+      Soomaaliya.
+    </p>
+
+    <p class="source">
+      Isha:
+      <a href="#" target="_blank">Akhriso isha warka</a>
+    </p>
+  </article>
+
+</main>
 
 <footer>
-  <p>© 2026 S & F — Xaaladda Soomaaliya</p>
+  <p>© 2026 S & F — Wararka iyo Xogta Soomaaliya</p>
 </footer>
 
 </body>
