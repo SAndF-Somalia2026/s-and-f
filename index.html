@@ -1,418 +1,863 @@
 <!DOCTYPE html>
 <html lang="so">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>S & F — Wararka Soomaaliya</title>
+<title>S & F — Wararka iyo Warbixinada Soomaaliya</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f5f6f8;
+  color:#17202a;
+}
 
-    header {
-      background: #0b3d2e;
-      color: white;
-      padding: 20px;
-    }
+header{
+  background:#073b2a;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
 
-    .header-content {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-    }
+.header{
+  max-width:1150px;
+  margin:auto;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
-    .logo {
-      font-size: 32px;
-      font-weight: bold;
-    }
+.logo{
+  font-size:34px;
+  font-weight:900;
+}
 
-    .subtitle {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-top: 4px;
-    }
+.logo span{
+  color:#f3c623;
+}
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 18px;
-      font-weight: bold;
-    }
+.tagline{
+  font-size:13px;
+  opacity:.9;
+  margin-top:3px;
+}
 
-    .breaking {
-      background: #d71920;
-      color: white;
-      padding: 12px;
-      font-weight: bold;
-      overflow: hidden;
-    }
+nav a{
+  color:white;
+  text-decoration:none;
+  margin-left:18px;
+  font-weight:bold;
+}
 
-    .breaking span {
-      display: inline-block;
-      margin-left: 20px;
-    }
+nav a:hover{
+  color:#f3c623;
+}
 
-    .container {
-      max-width: 1100px;
-      margin: 25px auto;
-      padding: 0 15px;
-    }
+.breaking{
+  background:#d71920;
+  color:white;
+  padding:11px;
+  overflow:hidden;
+  white-space:nowrap;
+  font-weight:bold;
+}
 
-    .top-title {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-      gap: 15px;
-    }
+.breaking span{
+  margin-left:25px;
+  font-weight:normal;
+}
 
-    .top-title h1 {
-      font-size: 28px;
-    }
+.container{
+  max-width:1150px;
+  margin:auto;
+  padding:0 20px;
+}
 
-    .search {
-      padding: 11px;
-      width: 230px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
+.hero{
+  margin-top:25px;
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
 
-    .featured {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      margin-bottom: 30px;
-    }
+.hero img{
+  width:100%;
+  height:380px;
+  object-fit:cover;
+}
 
-    .featured img {
-      width: 100%;
-      height: 330px;
-      object-fit: cover;
-    }
+.hero-content{
+  padding:25px;
+}
 
-    .featured-content {
-      padding: 22px;
-    }
+.badge{
+  display:inline-block;
+  background:#e9f5ef;
+  color:#087443;
+  padding:6px 10px;
+  border-radius:5px;
+  font-size:12px;
+  font-weight:bold;
+}
 
-    .category {
-      color: #0b3d2e;
-      font-weight: bold;
-      font-size: 14px;
-    }
+.hero h1{
+  font-size:32px;
+  margin:12px 0;
+}
 
-    .featured h2 {
-      font-size: 28px;
-      margin: 10px 0;
-    }
+.hero p{
+  color:#555;
+  line-height:1.8;
+  font-size:16px;
+}
 
-    .featured p {
-      line-height: 1.7;
-      color: #555;
-    }
+.read{
+  display:inline-block;
+  margin-top:16px;
+  background:#087443;
+  color:white;
+  text-decoration:none;
+  padding:11px 18px;
+  border-radius:6px;
+  font-weight:bold;
+}
 
-    .read {
-      display: inline-block;
-      margin-top: 15px;
-      background: #0b3d2e;
-      color: white;
-      text-decoration: none;
-      padding: 11px 18px;
-      border-radius: 6px;
-      font-weight: bold;
-    }
+.read:hover{
+  background:#052f22;
+}
 
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:35px 0 18px;
+}
 
-    .card {
-      background: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
+.section-head h2{
+  font-size:27px;
+}
 
-    .card img {
-      width: 100%;
-      height: 190px;
-      object-fit: cover;
-    }
+.search{
+  padding:11px 14px;
+  width:230px;
+  border:1px solid #ccc;
+  border-radius:7px;
+  outline:none;
+}
 
-    .card-content {
-      padding: 17px;
-    }
+.categories{
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  margin-bottom:25px;
+}
 
-    .card h3 {
-      margin: 8px 0;
-      line-height: 1.4;
-    }
+.categories button{
+  border:0;
+  padding:9px 14px;
+  border-radius:20px;
+  background:white;
+  cursor:pointer;
+  font-weight:bold;
+  white-space:nowrap;
+}
 
-    .card p {
-      color: #666;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.categories button:hover{
+  background:#087443;
+  color:white;
+}
 
-    .date {
-      color: #888;
-      font-size: 12px;
-    }
+.news-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
 
-    footer {
-      margin-top: 40px;
-      background: #0b3d2e;
-      color: white;
-      text-align: center;
-      padding: 25px;
-    }
+.card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
 
-    @media (max-width: 800px) {
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+}
 
-      nav a {
-        margin: 0 7px;
-      }
+.card-content{
+  padding:18px;
+}
 
-      .top-title {
-        flex-direction: column;
-        align-items: stretch;
-      }
+.card h3{
+  font-size:20px;
+  line-height:1.4;
+  margin:9px 0;
+}
 
-      .search {
-        width: 100%;
-      }
+.card p{
+  color:#666;
+  line-height:1.65;
+  font-size:14px;
+}
 
-      .news-grid {
-        grid-template-columns: 1fr;
-      }
+.date{
+  color:#888;
+  font-size:12px;
+}
 
-      .featured img {
-        height: 230px;
-      }
+.article{
+  display:none;
+  background:white;
+  margin-top:30px;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.07);
+}
 
-      .featured h2 {
-        font-size: 22px;
-      }
-    }
-  </style>
+.article.active{
+  display:block;
+}
+
+.article img{
+  width:100%;
+  max-height:430px;
+  object-fit:cover;
+  border-radius:10px;
+  margin:18px 0;
+}
+
+.article h2{
+  font-size:30px;
+  margin:10px 0;
+}
+
+.article-text{
+  font-size:17px;
+  line-height:2;
+  color:#333;
+}
+
+.article-source{
+  margin-top:22px;
+  padding:13px;
+  background:#f1f4f2;
+  border-left:4px solid #087443;
+  font-size:13px;
+}
+
+.back{
+  border:0;
+  background:#073b2a;
+  color:white;
+  padding:10px 15px;
+  border-radius:6px;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+
+footer{
+  margin-top:50px;
+  background:#073b2a;
+  color:white;
+  text-align:center;
+  padding:30px 20px;
+}
+
+footer strong{
+  font-size:25px;
+}
+
+@media(max-width:850px){
+
+  .header{
+    flex-direction:column;
+    gap:15px;
+    text-align:center;
+  }
+
+  nav a{
+    margin:0 6px;
+    font-size:14px;
+  }
+
+  .news-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .hero img{
+    height:280px;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .news-grid{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .section-head{
+    flex-direction:column;
+    align-items:stretch;
+    gap:12px;
+  }
+
+  .search{
+    width:100%;
+  }
+
+  .article{
+    padding:20px;
+  }
+
+  .article h2{
+    font-size:24px;
+  }
+
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="header-content">
-      <div>
-        <div class="logo">S & F</div>
-        <div class="subtitle">Wararka iyo Xogta Soomaaliya</div>
-      </div>
+<header>
 
-      <nav>
-        <a href="#">Bogga Hore</a>
-        <a href="#wararka">Wararka</a>
-        <a href="#xog">Xog</a>
-      </nav>
-    </div>
-  </header>
+<div class="header">
 
-  <div class="breaking">
-    🔴 WAR DEG-DEG AH:
-    <span>Ku soo dhawoow S & F — Wararka Soomaaliya</span>
-  </div>
+<div>
+<div class="logo">S <span>&</span> F</div>
+<div class="tagline">Wararka iyo Warbixinada Soomaaliya</div>
+</div>
 
-  <main class="container">
+<nav>
+<a href="#" onclick="showHome()">Bogga Hore</a>
+<a href="#wararka">Wararka</a>
+<a href="#warbixinada">Warbixinno</a>
+</nav>
 
-    <div class="top-title">
-      <h1>📰 Wararka Maanta</h1>
+</div>
 
-      <input
-        class="search"
-        type="text"
-        id="search"
-        placeholder="Raadi war..."
-        onkeyup="searchNews()"
-      >
-    </div>
-
-    <!-- WAR WEYN -->
-    <section class="featured">
-      <img
-        src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80"
-        alt="Wararka Soomaaliya"
-      >
-
-      <div class="featured-content">
-        <div class="category">SOOMAALIYA</div>
-
-        <h2>Wararka iyo dhacdooyinka cusub ee Soomaaliya</h2>
-
-        <p>
-          S & F waxay idiin soo gudbinaysaa warar iyo xog ku saabsan
-          Soomaaliya. Halkan waxaad ka heli kartaa wararka ugu dambeeya,
-          xogta bulshada iyo dhacdooyinka muhiimka ah.
-        </p>
-
-        <a class="read" href="#war1">Akhri Warka →</a>
-      </div>
-    </section>
-
-    <!-- WARARKA -->
-    <section id="wararka">
-
-      <div class="news-grid" id="newsGrid">
-
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=800&q=80"
-            alt="War"
-          >
-
-          <div class="card-content">
-            <div class="category">WARARKA</div>
-            <div class="date">26 Sebtembar 2026</div>
-
-            <h3>Wararka ugu dambeeya ee Soomaaliya</h3>
-
-            <p>
-              Wararkii iyo dhacdooyinkii ugu dambeeyay ee Soomaaliya.
-            </p>
-
-            <a class="read" href="#war1">Akhri Warka</a>
-          </div>
-        </article>
+</header>
 
 
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1585829365295-ab7cd400c167?auto=format&fit=crop&w=800&q=80"
-            alt="News"
-          >
-
-          <div class="card-content">
-            <div class="category">XOG</div>
-            <div class="date">26 Sebtembar 2026</div>
-
-            <h3>Xog iyo warbixinno ku saabsan Soomaaliya</h3>
-
-            <p>
-              Xog muhiim ah iyo warbixinno laga diyaariyey arrimaha bulshada.
-            </p>
-
-            <a class="read" href="#war2">Akhri Warka</a>
-          </div>
-        </article>
+<div class="breaking">
+🔴 WAR DEG-DEG AH:
+<span>S & F — Wararka iyo Warbixinada Soomaaliya</span>
+</div>
 
 
-        <article class="card">
-          <img
-            src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=800&q=80"
-            alt="News"
-          >
-
-          <div class="card-content">
-            <div class="category">BULSHO</div>
-            <div class="date">26 Sebtembar 2026</div>
-
-            <h3>Wararka bulshada iyo dhacdooyinka dalka</h3>
-
-            <p>
-              Akhri warbixinno ku saabsan bulshada iyo dhacdooyinka ka socda dalka.
-            </p>
-
-            <a class="read" href="#war3">Akhri Warka</a>
-          </div>
-        </article>
-
-      </div>
-
-    </section>
+<main class="container">
 
 
-    <!-- QORAALLO DHAMMEYSTIRAN -->
+<!-- WAR WEYN -->
 
-    <section id="war1" style="background:white; margin-top:35px; padding:25px; border-radius:10px;">
-      <div class="category">WARARKA</div>
-      <h2 style="margin:10px 0;">Wararka ugu dambeeya ee Soomaaliya</h2>
-      <p style="line-height:1.8;">
-        Qaybtan waxaa lagu soo bandhigi karaa wararka cusub ee Soomaaliya.
-        Marka aad hesho war cusub, waxaad beddeli kartaa cinwaanka,
-        sawirka iyo qoraalka si akhristayaashu ay u helaan xogta ugu dambeysa.
-      </p>
-    </section>
+<section class="hero">
 
+<img
+src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1400&q=80"
+alt="Wararka">
 
-    <section id="war2" style="background:white; margin-top:20px; padding:25px; border-radius:10px;">
-      <div class="category">XOG</div>
-      <h2 style="margin:10px 0;">Xog iyo warbixinno</h2>
-      <p style="line-height:1.8;">
-        S & F waxay sidoo kale soo bandhigi kartaa xog, warbixinno iyo
-        faallooyin ku saabsan arrimaha bulshada iyo dalka.
-      </p>
-    </section>
+<div class="hero-content">
 
+<span class="badge">WARARKA MAANTA</span>
 
-    <section id="war3" style="background:white; margin-top:20px; padding:25px; border-radius:10px;">
-      <div class="category">BULSHO</div>
-      <h2 style="margin:10px 0;">Wararka bulshada</h2>
-      <p style="line-height:1.8;">
-        Halkan waxaa lagu qori karaa wararka iyo dhacdooyinka bulshada,
-        iyadoo lagu darayo taariikhda iyo isha warka.
-      </p>
-    </section>
+<h1>Ku soo dhawoow S & F</h1>
 
-  </main>
+<p>
+S & F waa madal lagu soo bandhigo wararka, warbixinada
+iyo xogta ku saabsan Soomaaliya iyo dunida.
+</p>
+
+<a class="read" href="#wararka">
+Akhri Wararka →
+</a>
+
+</div>
+
+</section>
 
 
-  <footer>
-    <strong>S & F</strong>
-    <br><br>
-    Wararka iyo Xogta Soomaaliya
-    <br><br>
-    © 2026 S & F
-  </footer>
+<!-- QAYBAHA -->
+
+<div class="section-head">
+
+<h2 id="wararka">📰 Wararka Maanta</h2>
+
+<input
+class="search"
+id="search"
+type="text"
+placeholder="Raadi war..."
+onkeyup="searchNews()">
+
+</div>
 
 
-  <script>
-    function searchNews() {
+<div class="categories">
 
-      let input = document
-        .getElementById("search")
-        .value
-        .toLowerCase();
+<button onclick="filterNews('all')">Dhammaan</button>
+<button onclick="filterNews('soomaaliya')">Soomaaliya</button>
+<button onclick="filterNews('siyaasad')">Siyaasad</button>
+<button onclick="filterNews('amni')">Amni</button>
+<button onclick="filterNews('dhaqaale')">Dhaqaale</button>
+<button onclick="filterNews('bulsho')">Bulsho</button>
+<button onclick="filterNews('ciyaaro')">Ciyaaro</button>
 
-      let cards = document.querySelectorAll(".card");
+</div>
 
-      cards.forEach(function(card) {
 
-        let text = card.innerText.toLowerCase();
+<!-- NEWS CARDS -->
 
-        if (text.includes(input)) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
+<section class="news-grid" id="newsGrid">
 
-      });
+
+<article class="card" data-category="soomaaliya">
+
+<img
+src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=900&q=80"
+alt="War">
+
+<div class="card-content">
+
+<span class="badge">SOOMAALIYA</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Wararka iyo dhacdooyinka cusub ee Soomaaliya</h3>
+
+<p>
+Halkan waxaa lagu soo bandhigayaa wararka ugu dambeeya
+ee Soomaaliya.
+</p>
+
+<a class="read" href="#article1" onclick="showArticle('article1')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+
+<article class="card" data-category="siyaasad">
+
+<img
+src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=900&q=80"
+alt="Siyaasad">
+
+<div class="card-content">
+
+<span class="badge">SIYAASAD</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Wararka siyaasadda Soomaaliya</h3>
+
+<p>
+Warbixinno ku saabsan arrimaha siyaasadda iyo dhacdooyinka
+muhiimka ah.
+</p>
+
+<a class="read" href="#article2" onclick="showArticle('article2')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+
+<article class="card" data-category="amni">
+
+<img
+src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=900&q=80"
+alt="Amni">
+
+<div class="card-content">
+
+<span class="badge">AMNI</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Xaaladda amniga iyo dhacdooyinka dalka</h3>
+
+<p>
+Warar iyo xog ku saabsan xaaladda amniga Soomaaliya.
+</p>
+
+<a class="read" href="#article3" onclick="showArticle('article3')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+
+<article class="card" data-category="dhaqaale">
+
+<img
+src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=900&q=80"
+alt="Dhaqaale">
+
+<div class="card-content">
+
+<span class="badge">DHAQAALE</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Wararka dhaqaalaha Soomaaliya</h3>
+
+<p>
+Xog iyo warbixinno ku saabsan ganacsiga iyo dhaqaalaha.
+</p>
+
+<a class="read" href="#article4" onclick="showArticle('article4')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+
+<article class="card" data-category="bulsho">
+
+<img
+src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=900&q=80"
+alt="Bulsho">
+
+<div class="card-content">
+
+<span class="badge">BULSHO</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Wararka bulshada iyo nolosha dadka</h3>
+
+<p>
+Warbixinno ku saabsan bulshada iyo arrimaha nolosha.
+</p>
+
+<a class="read" href="#article5" onclick="showArticle('article5')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+
+<article class="card" data-category="ciyaaro">
+
+<img
+src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"
+alt="Ciyaaro">
+
+<div class="card-content">
+
+<span class="badge">CIYAARO</span>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<h3>Wararka ciyaaraha</h3>
+
+<p>
+Natiijooyin, dhacdooyin iyo warar cusub oo ciyaaraha ah.
+</p>
+
+<a class="read" href="#article6" onclick="showArticle('article6')">
+Akhri Warka →
+</a>
+
+</div>
+</article>
+
+</section>
+
+
+<!-- WARBIXINNO -->
+
+<div class="section-head" id="warbixinada">
+
+<h2>📊 Warbixinno</h2>
+
+</div>
+
+
+<section class="article" style="display:block">
+
+<span class="badge">WARBIXIN</span>
+
+<h2>Warbixinno gaar ah oo S & F</h2>
+
+<p class="article-text">
+Qaybtan waxaad ku soo bandhigi kartaa warbixinno dheer,
+xog ururin, wareysiyo iyo qoraallo faahfaahsan.
+Waxaad warbixin kasta u samayn kartaa cinwaan, sawir,
+taariikh iyo qoraal dhammeystiran.
+</p>
+
+</section>
+
+
+<!-- ARTICLES -->
+
+<section class="article" id="article1">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">SOOMAALIYA</span>
+
+<h2>Wararka iyo dhacdooyinka cusub ee Soomaaliya</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1495020689067-958852a7765e?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+S & F waxay halkan ku soo bandhigaysaa wararka cusub
+ee Soomaaliya. Qoraalka war kasta waxaa lagu diyaarin karaa
+faahfaahin dheeraad ah, iyadoo la raacinayo taariikhda,
+isha warka iyo macluumaadka muhiimka ah.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+<section class="article" id="article2">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">SIYAASAD</span>
+
+<h2>Wararka siyaasadda Soomaaliya</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+Qaybtan waxaa lagu daabici karaa wararka siyaasadda,
+hadallada rasmiga ah, shirarka iyo go'aannada la xiriira
+arrimaha Soomaaliya. War kasta waa in lagu lifaaqaa
+isha xogta si akhristuhu u hubin karo.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+<section class="article" id="article3">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">AMNI</span>
+
+<h2>Xaaladda amniga Soomaaliya</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+Qaybtan waxaa lagu daabici karaa wararka amniga,
+iyadoo si cad loo kala saarayo xaqiiqooyinka la xaqiijiyey
+iyo sheegashooyinka ay soo gudbiyaan dhinacyada kala duwan.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+<section class="article" id="article4">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">DHAQAALE</span>
+
+<h2>Wararka dhaqaalaha Soomaaliya</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+Halkan waxaa lagu soo bandhigi karaa wararka ganacsiga,
+suuqyada, maalgashiga iyo dhaqaalaha Soomaaliya.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+<section class="article" id="article5">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">BULSHO</span>
+
+<h2>Wararka bulshada</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+Wararka bulshada waxay diiradda saari karaan waxbarashada,
+caafimaadka, dhalinyarada, deegaanka iyo arrimaha nolosha
+bulshada.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+<section class="article" id="article6">
+
+<button class="back" onclick="showHome()">← Ku noqo Wararka</button>
+
+<span class="badge">CIYAARO</span>
+
+<h2>Wararka ciyaaraha</h2>
+
+<div class="date">26 Sebtembar 2026</div>
+
+<img
+src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=1200&q=80">
+
+<p class="article-text">
+Halkan waxaa lagu soo bandhigi karaa natiijooyinka,
+jadwalka iyo wararka ciyaaraha Soomaaliya iyo caalamka.
+</p>
+
+<div class="article-source">
+Isha: S & F
+</div>
+
+</section>
+
+
+</main>
+
+
+<footer>
+
+<strong>S & F</strong>
+
+<p style="margin-top:8px;">
+Wararka iyo Warbixinada Soomaaliya
+</p>
+
+<p style="margin-top:12px;">
+© 2026 S & F — Dhammaan xuquuqdu way dhowran tahay.
+</p>
+
+</footer>
+
+
+<script>
+
+function showArticle(id){
+
+  document.querySelectorAll(".article").forEach(function(article){
+    article.classList.remove("active");
+  });
+
+  const article = document.getElementById(id);
+
+  if(article){
+    article.classList.add("active");
+    article.scrollIntoView({behavior:"smooth"});
+  }
+
+}
+
+
+function showHome(){
+
+  document.querySelectorAll(".article").forEach(function(article){
+    article.classList.remove("active");
+  });
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+function searchNews(){
+
+  const search =
+    document.getElementById("search")
+    .value
+    .toLowerCase();
+
+  document.querySelectorAll(".card").forEach(function(card){
+
+    const text = card.innerText.toLowerCase();
+
+    card.style.display =
+      text.includes(search) ? "" : "none";
+
+  });
+
+}
+
+
+function filterNews(category){
+
+  document.querySelectorAll(".card").forEach(function(card){
+
+    if(category === "all"){
+      card.style.display = "";
+      return;
     }
-  </script>
+
+    card.style.display =
+      card.dataset.category === category
+      ? ""
+      : "none";
+
+  });
+
+}
+
+</script>
 
 </body>
 </html>
