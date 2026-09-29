@@ -1,35 +1,1148 @@
-function render(list=news){
+<!DOCTYPE html>
+<html lang="so">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>S & F — Wararka iyo Warbixinada Soomaaliya</title>
+
+  <meta name="description" content="S & F — Wararka iyo Warbixinada Soomaaliya. Wararka Soomaaliya, amniga, bulshada, dhaqaalaha iyo ciyaaraha.">
+
+  <style>
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:#f5f6f8;
+      color:#171717;
+      line-height:1.8;
+    }
+
+    header{
+      background:#111827;
+      color:white;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 3px 15px rgba(0,0,0,.18);
+    }
+
+    .header-inner{
+      max-width:1150px;
+      margin:auto;
+      padding:15px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:15px;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:900;
+      letter-spacing:1px;
+    }
+
+    .logo span{
+      color:#e11d48;
+    }
+
+    nav{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:14px;
+    }
+
+    nav a:hover{
+      color:#fca5a5;
+    }
+
+    .breaking{
+      background:#d71920;
+      color:white;
+      padding:9px 15px;
+      font-weight:bold;
+      overflow:hidden;
+    }
+
+    .breaking-inner{
+      max-width:1150px;
+      margin:auto;
+    }
+
+    .container{
+      max-width:1150px;
+      margin:auto;
+      padding:25px 20px;
+    }
+
+    .hero{
+      background:linear-gradient(135deg,#111827,#374151);
+      color:white;
+      padding:45px 30px;
+      border-radius:18px;
+      margin-bottom:30px;
+    }
+
+    .hero small{
+      color:#fca5a5;
+      font-weight:bold;
+    }
+
+    .hero h1{
+      font-size:40px;
+      line-height:1.25;
+      margin:12px 0;
+    }
+
+    .hero p{
+      max-width:800px;
+      color:#e5e7eb;
+    }
+
+    .date-box{
+      margin-top:18px;
+      font-weight:bold;
+      color:#fca5a5;
+    }
+
+    .tools{
+      background:white;
+      padding:20px;
+      border-radius:15px;
+      margin-bottom:30px;
+      box-shadow:0 2px 12px rgba(0,0,0,.06);
+    }
+
+    #search{
+      width:100%;
+      padding:13px 15px;
+      border:1px solid #ddd;
+      border-radius:10px;
+      font-size:16px;
+      outline:none;
+    }
+
+    .categories{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:15px;
+    }
+
+    .categories button{
+      border:0;
+      background:#111827;
+      color:white;
+      padding:8px 13px;
+      border-radius:20px;
+      cursor:pointer;
+    }
+
+    .categories button:hover{
+      background:#d71920;
+    }
+
+    .section-title{
+      margin:35px 0 18px;
+      font-size:28px;
+      border-left:5px solid #d71920;
+      padding-left:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+    }
+
+    .card{
+      background:white;
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 3px 15px rgba(0,0,0,.07);
+      transition:.2s;
+    }
+
+    .card:hover{
+      transform:translateY(-3px);
+    }
+
+    .card-content{
+      padding:22px;
+    }
+
+    .label{
+      display:inline-block;
+      color:#d71920;
+      font-size:12px;
+      font-weight:900;
+      margin-bottom:6px;
+      text-transform:uppercase;
+    }
+
+    .date{
+      color:#777;
+      font-size:13px;
+      margin-bottom:10px;
+    }
+
+    .card h2{
+      font-size:21px;
+      line-height:1.4;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      color:#555;
+      margin-bottom:18px;
+    }
+
+    .read{
+      border:0;
+      background:#d71920;
+      color:white;
+      padding:11px 16px;
+      border-radius:8px;
+      font-weight:bold;
+      cursor:pointer;
+      font-size:15px;
+    }
+
+    .read:hover{
+      background:#a90f15;
+    }
+
+    .archive{
+      background:white;
+      padding:18px;
+      margin-bottom:10px;
+      border-radius:12px;
+      cursor:pointer;
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
+    }
+
+    .archive:hover{
+      background:#fafafa;
+    }
+
+    .archive strong{
+      font-size:17px;
+    }
+
+    .article-page{
+      display:none;
+      background:white;
+      border-radius:16px;
+      padding:30px;
+      box-shadow:0 3px 15px rgba(0,0,0,.08);
+    }
+
+    .article-page h1{
+      font-size:34px;
+      line-height:1.3;
+      margin:10px 0 8px;
+    }
+
+    .article-meta{
+      color:#777;
+      border-bottom:1px solid #eee;
+      padding-bottom:15px;
+      margin-bottom:25px;
+    }
+
+    .article-content{
+      max-width:850px;
+      font-size:18px;
+    }
+
+    .article-content h2{
+      margin:28px 0 10px;
+      font-size:24px;
+      color:#111827;
+    }
+
+    .article-content p{
+      margin-bottom:18px;
+    }
+
+    .source{
+      background:#f3f4f6;
+      border-left:4px solid #d71920;
+      padding:15px;
+      margin-top:25px;
+      font-size:15px;
+    }
+
+    .back{
+      border:0;
+      background:#111827;
+      color:white;
+      padding:11px 18px;
+      border-radius:8px;
+      cursor:pointer;
+      margin-bottom:20px;
+      font-weight:bold;
+    }
+
+    footer{
+      margin-top:50px;
+      background:#111827;
+      color:#ddd;
+      text-align:center;
+      padding:30px 20px;
+    }
+
+    footer strong{
+      color:white;
+    }
+
+    .empty{
+      background:white;
+      padding:20px;
+      border-radius:12px;
+      color:#777;
+    }
+
+    @media(max-width:750px){
+
+      .header-inner{
+        flex-direction:column;
+        align-items:flex-start;
+      }
+
+      nav{
+        gap:10px;
+      }
+
+      .hero{
+        padding:30px 20px;
+      }
+
+      .hero h1{
+        font-size:29px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .article-page{
+        padding:20px;
+      }
+
+      .article-page h1{
+        font-size:27px;
+      }
+
+      .article-content{
+        font-size:17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-inner">
+
+    <div class="logo">
+      S <span>&</span> F
+    </div>
+
+    <nav>
+      <a href="#" onclick="showHome()">Bogga Hore</a>
+      <a href="#today">Wararka Maanta</a>
+      <a href="#archive">Wararkii Hore</a>
+    </nav>
+
+  </div>
+</header>
+
+<div class="breaking">
+  <div class="breaking-inner">
+    🔴 WAR DEGDEG AH — S & F: Wararka iyo warbixinada Soomaaliya
+  </div>
+</div>
+
+<main class="container">
+
+  <section class="hero">
+
+    <small>S & F — WARARKA IYO WARBIXINADA SOOMAALIYA</small>
+
+    <h1>
+      Wararka Soomaaliya iyo dhacdooyinka ugu muhiimsan
+    </h1>
+
+    <p>
+      Halkan waxaad ka heli kartaa wararka Soomaaliya,
+      amniga, bulshada, dhaqaalaha iyo arrimaha kale ee
+      muhiimka ah, iyadoo wararkii hore ay sii ahaanayaan
+      kaydka website-ka.
+    </p>
+
+    <div class="date-box" id="clock">
+      Waqtiga Soomaaliya: ...
+    </div>
+
+  </section>
+
+
+  <div id="homePage">
+
+    <section class="tools">
+
+      <input
+        id="search"
+        type="search"
+        placeholder="🔎 Raadi war..."
+        oninput="searchNews()"
+      >
+
+      <div class="categories">
+
+        <button onclick="filterNews('Dhammaan')">
+          Dhammaan
+        </button>
+
+        <button onclick="filterNews('Soomaaliya')">
+          Soomaaliya
+        </button>
+
+        <button onclick="filterNews('Amni')">
+          Amni
+        </button>
+
+        <button onclick="filterNews('Bulsho')">
+          Bulsho
+        </button>
+
+        <button onclick="filterNews('Dhaqaale')">
+          Dhaqaale
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <h2 class="section-title" id="today">
+      📰 Wararka Maanta
+    </h2>
+
+    <div id="todayNews" class="grid"></div>
+
+
+    <h2 class="section-title" id="archive">
+      📚 Wararkii Hore
+    </h2>
+
+    <div id="oldNews"></div>
+
+  </div>
+
+
+  <section id="articlePage" class="article-page">
+
+    <button class="back" onclick="showHome()">
+      ← Ku noqo Wararka
+    </button>
+
+    <div id="articleContent"></div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <strong>S & F</strong>
+
+  <p>
+    Wararka iyo Warbixinada Soomaaliya
+  </p>
+
+  <p>
+    © 2026 S & F — Dhammaan xuquuqdu way dhowran tahay.
+  </p>
+
+</footer>
+
+
+<script>
+
+const news = [
+
+  {
+    id: 1,
+
+    title:
+      "Baydhabo oo dagaal culus ka dhacay, dadka rayidkana ay wajahaan xaalad adag",
+
+    category:
+      "Amni",
+
+    date:
+      "2026-09-28",
+
+    summary:
+      "Baydhabo waxaa ka dhacay dagaallo u dhexeeyay ciidamada dowladda iyo ciidamo deegaanka ah, iyadoo xaaladda dadka rayidka ah ay noqotay mid walaac leh.",
+
+    source:
+      "Al Jazeera / AFP iyo SONNA",
+
+    content: `
+
+      <p>
+      Magaalada Baydhabo ee xarunta gobolka Bay waxaa
+      28-kii Sebtembar 2026 ka dhacay dagaallo culus
+      oo u dhexeeyay ciidamada dowladda federaalka iyo
+      ciidamo deegaanka ah oo lala xiriirinayo hoggaankii
+      hore ee Koonfur Galbeed, Cabdicasiis Xasan Maxamed
+      Laftagareen.
+      </p>
+
+      <p>
+      Warbixinno ay soo saareen Al Jazeera iyo AFP ayaa
+      sheegay in dagaalku uu ka dhacay gudaha magaalada,
+      iyadoo xaaladdu saameysay dhaqdhaqaaqa dadka iyo
+      adeegyada muhiimka ah.
+      </p>
+
+      <h2>
+      Sida uu dagaalku u dhacay
+      </h2>
+
+      <p>
+      Sida lagu sheegay warbixinnada la helay, ciidamo
+      deegaanka ah ayaa gudaha magaalada galay, waxaana
+      halkaas ka dhacay iska horimaadyo ay ku lug lahaayeen
+      ciidamo dowladda ka tirsan.
+      </p>
+
+      <p>
+      Dowladda Soomaaliya ayaa sheegtay in ciidamadeedu
+      iska caabiyeen weerarka. Dhinaca kale, wararka laga
+      helay dhinacyada kale waxay bixiyeen faahfaahin
+      ka duwan tan dowladda. Sidaa darteed, sheegashooyinka
+      dhinacyada dagaallamaya waa in loo kala saaraa
+      sheegashooyin, iyadoo aan dhammaan faahfaahinta si
+      madax-bannaan loo xaqiijin.
+      </p>
+
+      <h2>
+      Dadka rayidka ah
+      </h2>
+
+      <p>
+      Dadka rayidka ah ayaa kamid noqday dadka ugu badan
+      ee saameynta dareemay. Warbixinta Al Jazeera/AFP
+      waxay sheegtay in dadka qaar ay ku adkaatay inay
+      magaalada ka baxaan ama ay gaaraan xarumaha
+      caafimaadka.
+      </p>
+
+      <p>
+      Warbixinta ayaa sidoo kale xustay xog ay bixisay
+      MSF oo ku saabsan dad dhaawacmay oo loo qaaday
+      isbitaalka gobolka Bay. Xaaladdan waxay muujinaysaa
+      sida colaadaha magaalooyinka ay si toos ah u saameyn
+      karaan dadka aan dagaalka qaybta ka ahayn.
+      </p>
+
+      <h2>
+      Xaaladda bani'aadannimo
+      </h2>
+
+      <p>
+      Baydhabo waxay sidoo kale ku jirtaa deegaan ay ka
+      jiraan caqabado bani'aadannimo oo la xiriira
+      barakac, cunto-yari iyo khataraha cimilada.
+      Colaadaha cusub waxay sii adkeyn karaan gaarsiinta
+      adeegyada iyo gargaarka dadka u baahan.
+      </p>
+
+      <p>
+      IPC iyo hay'adaha kale ayaa hore uga digay in
+      fatahaadaha la xiriira El Niño iyo yaraanshaha
+      gargaarku ay sii kordhin karaan khataraha
+      bani'aadannimo ee koonfur-galbeed Soomaaliya.
+      </p>
+
+      <div class="source">
+        <strong>Ilaha:</strong>
+        Al Jazeera/AFP, SONNA iyo xog laga soo xigtay MSF.
+      </div>
+
+    `
+  },
+
+
+  {
+    id: 2,
+
+    title:
+      "Soomaaliya oo xoojinaysa diyaar-garowga El Niño iyo fatahaadaha",
+
+    category:
+      "Bulsho",
+
+    date:
+      "2026-09-29",
+
+    summary:
+      "SoDMA iyo hay'adaha kale ee dowladda ayaa xoojinaya diyaar-garowga khataraha fatahaadaha iyo El Niño.",
+
+    source:
+      "SoDMA / SONNA",
+
+    content: `
+
+      <p>
+      Soomaaliya ayaa sii xoojinaysa diyaar-garowga
+      khataraha fatahaadaha iyo saameynta El Niño,
+      iyadoo hay'adaha dowladda ay kordhinayaan
+      qorshayaasha digniinta hore iyo gurmadka.
+      </p>
+
+      <h2>
+      SoDMA iyo Ciidanka Badda
+      </h2>
+
+      <p>
+      Hay'adda Maareynta Musiibooyinka Qaranka ee
+      Soomaaliya, SoDMA, ayaa kulan la yeelatay
+      Taliyaha Ciidanka Badda iyo Difaaca Xeebaha.
+      Kulanka waxaa diiradda lagu saaray sidii
+      hay'adaha kala duwan ay uga wada shaqeyn lahaayeen
+      diyaar-garowga xaaladaha degdegga ah.
+      </p>
+
+      <p>
+      Ciidanka Badda ayaa sidoo kale door ka qaadan kara
+      gurmadka dadka ku nool deegaanada xeebaha iyo
+      meelaha ay fatahaaduhu saameyn karaan.
+      </p>
+
+      <h2>
+      Qorshaha gurmadka
+      </h2>
+
+      <p>
+      SoDMA waxay sheegtay inay diyaarisay qalab iyo
+      qorshayaal loogu talagalay in si degdeg ah looga
+      jawaabo xaaladaha fatahaadaha.
+      </p>
+
+      <p>
+      Qorsheynta hore ayaa muhiim ah sababtoo ah fatahaaduhu
+      waxay saameyn karaan guryaha, waddooyinka, beeraha,
+      xoolaha iyo adeegyada aasaasiga ah.
+      </p>
+
+      <h2>
+      Cunto-yarida iyo xaaladda bani'aadannimo
+      </h2>
+
+      <p>
+      Khataraha cimilada waxay ku soo beegmayaan xilli
+      Soomaaliya ay weli wajahayso xaalad bani'aadannimo
+      oo adag.
+      </p>
+
+      <p>
+      IPC iyo hay'adaha kale ayaa ka digay in isku darka
+      fatahaadaha, colaadaha, barakaca iyo maalgelin
+      yaraanta gargaarku ay kordhin karaan baahida dadka
+      nugul.
+      </p>
+
+      <div class="source">
+        <strong>Ilaha:</strong>
+        SoDMA, SONNA iyo IPC.
+      </div>
+
+    `
+  },
+
+
+  {
+    id: 3,
+
+    title:
+      "Ra'iisul Wasaaraha oo soo xiray tababar loo qabtay cutubyo ka tirsan Ciidanka Xoogga Dalka",
+
+    category:
+      "Amni",
+
+    date:
+      "2026-09-28",
+
+    summary:
+      "Ra'iisul Wasaaraha Soomaaliya ayaa ka qayb galay munaasabad lagu soo xirayay tababar loo qabtay ciidamo ka tirsan Xoogga Dalka.",
+
+    source:
+      "SONNA",
+
+    content: `
+
+      <p>
+      Ra'iisul Wasaaraha Soomaaliya Xamse Cabdi Barre ayaa
+      28-kii Sebtembar 2026 ka qayb galay munaasabad lagu
+      soo xirayay tababar loo qabtay cutubyo ka tirsan
+      Ciidanka Xoogga Dalka Soomaaliyeed.
+      </p>
+
+      <h2>
+      Ujeeddada tababarka
+      </h2>
+
+      <p>
+      Tababarrada ciidamada ayaa qayb ka ah dadaallada
+      lagu horumarinayo awoodda iyo diyaar-garowga ciidamada
+      dowladda.
+      </p>
+
+      <p>
+      Munaasabadda waxaa ka qayb galay mas'uuliyiin
+      dowladda ka tirsan iyo saraakiil ciidan. Ciidamada
+      ayaa lagu booriyay inay gutaan waajibaadkooda
+      qaran ayna ilaaliyaan shacabka.
+      </p>
+
+      <h2>
+      Xaaladda amniga
+      </h2>
+
+      <p>
+      Tababarka ciidamada wuxuu ku soo beegmayaa xilli
+      Soomaaliya ay weli wajahdo caqabado amni oo ka jira
+      qaybo kala duwan oo dalka ah.
+      </p>
+
+      <p>
+      Dowladda Soomaaliya ayaa muddooyinkii dambe xoogga
+      saartay tayeynta ciidamada iyo diyaarinta cutubyo
+      awood u leh inay qaadaan howlgallo amni.
+      </p>
+
+      <div class="source">
+        <strong>Ilo:</strong>
+        SONNA iyo warbixinno rasmi ah oo dowladda Soomaaliya
+        laga soo saaray.
+      </div>
+
+    `
+  },
+
+
+  {
+    id: 4,
+
+    title:
+      "Soomaaliya oo qabatay madal looga hadlay maalgashiga iyo bangiyada",
+
+    category:
+      "Dhaqaale",
+
+    date:
+      "2026-09-28",
+
+    summary:
+      "Muqdisho waxaa lagu qabtay kulan looga hadlayay maalgashiga, bangiyada iyo kobcinta qaybta gaarka loo leeyahay.",
+
+    source:
+      "Shabelle Media Network",
+
+    content: `
+
+      <p>
+      Muqdisho waxaa 28-kii Sebtembar lagu qabtay madal
+      istiraatiiji ah oo looga hadlay xiriirka ka dhexeeya
+      maalgashiga iyo bangiyada Soomaaliya.
+      </p>
+
+      <h2>
+      Bangiyada iyo maalgashiga
+      </h2>
+
+      <p>
+      Kulanka waxaa diiradda lagu saaray sidii loo xoojin
+      lahaa iskaashiga u dhexeeya hay'adaha maalgashiga,
+      bangiyada iyo qaybta gaarka loo leeyahay.
+      </p>
+
+      <p>
+      Bangiyada ayaa door muhiim ah ka ciyaari kara
+      maalgelinta ganacsiyada iyo mashaariicda horumarineed.
+      Helitaanka adeegyo maaliyadeed oo wanaagsan ayaa
+      sidoo kale muhiim u ah kobaca ganacsiyada yaryar
+      iyo kuwa waaweyn.
+      </p>
+
+      <h2>
+      Fursadaha maalgashi
+      </h2>
+
+      <p>
+      Soomaaliya waxay leedahay fursado maalgashi oo ku
+      jira dhinacyo kala duwan, sida ganacsiga, adeegyada,
+      kaabayaasha, beeraha iyo xoolaha.
+      </p>
+
+      <p>
+      Horumarinta nidaamka maaliyadeed iyo kalsoonida
+      maalgashadayaasha ayaa noqon kara arrimo muhiim u ah
+      kobaca dhaqaalaha.
+      </p>
+
+      <div class="source">
+        <strong>Ilo:</strong>
+        Shabelle Media Network iyo hay'adaha Soomaaliya
+        ee arrimaha maalgashiga.
+      </div>
+
+    `
+  },
+
+
+  {
+    id: 5,
+
+    title:
+      "Digniin cusub oo ku saabsan xaaladda cuntada iyo dadka nugul",
+
+    category:
+      "Bulsho",
+
+    date:
+      "2026-09-28",
+
+    summary:
+      "Hay'adaha bani'aadannimada ayaa ka digaya in fatahaadaha iyo yaraanshaha gargaarku ay kordhin karaan khataraha dadka nugul.",
+
+    source:
+      "IPC / Reuters",
+
+    content: `
+
+      <p>
+      Soomaaliya ayaa weli wajahaysa xaalad bani'aadannimo
+      oo adag, iyadoo hay'adaha cuntada iyo gargaarka ay
+      ka digayaan saameynta ay fatahaadaha iyo maalgelin
+      yaraantu ku yeelan karaan dadka nugul.
+      </p>
+
+      <h2>
+      Khatarta fatahaadaha
+      </h2>
+
+      <p>
+      Fatahaaduhu waxay waxyeello u geysan karaan
+      beeraha, xoolaha, waddooyinka iyo ilaha biyaha.
+      Qoysaska barakacayaasha ah ayaa si gaar ah ugu nugul
+      xaaladaha noocan ah.
+      </p>
+
+      <p>
+      IPC ayaa ka digtay in xaaladdu ay sii xumaan karto
+      haddii fatahaadaha la filayo ay dhacaan iyadoo
+      gargaarka bani'aadannimadu uusan ku filnayn baahida.
+      </p>
+
+      <h2>
+      Dadka Koonfur Galbeed
+      </h2>
+
+      <p>
+      Koonfur Galbeed ayaa ka mid ah meelaha si gaar ah
+      looga hadlayo, iyadoo Bay iyo deegaannada ku dhow
+      ay horey u lahaayeen dad badan oo nugul.
+      </p>
+
+      <p>
+      Isku darka colaadda, barakaca, fatahaadaha iyo
+      cunto-yarida ayaa dadka qaar ku abuuri kara baahi
+      dheeraad ah oo ku saabsan cunto, biyo, hoy iyo
+      adeegyo caafimaad.
+      </p>
+
+      <div class="source">
+        <strong>Ilo:</strong>
+        IPC iyo Reuters.
+      </div>
+
+    `
+  },
+
+
+  {
+    id: 6,
+
+    title:
+      "Soomaaliya oo xoojinaysa iskaashiga dhaqaale ee Geeska Afrika",
+
+    category:
+      "Dhaqaale",
+
+    date:
+      "2026-09-28",
+
+    summary:
+      "Mas'uuliyiinta Soomaaliya ayaa ka hadlay iskaashiga dhaqaale iyo horumarinta kaabayaasha gobolka Geeska Afrika.",
+
+    source:
+      "SONNA",
+
+    content: `
+
+      <p>
+      Soomaaliya ayaa sii wadda dadaallada lagu xoojinayo
+      iskaashiga dhaqaale ee dalalka Geeska Afrika.
+      Arrintan ayaa lagu soo hadal qaaday kulan ay
+      mas'uuliyiin Soomaaliyeed ka qayb galeen.
+      </p>
+
+      <h2>
+      Iskaashiga gobolka
+      </h2>
+
+      <p>
+      Iskaashiga dhaqaale ee gobolka wuxuu taaban karaa
+      arrimo ay ka mid yihiin ganacsiga, gaadiidka,
+      kaabayaasha iyo adeegyada maaliyadeed.
+      </p>
+
+      <p>
+      Soomaaliya waxay ku taallaa meel istiraatiiji ah
+      oo isku xirta Geeska Afrika iyo marinno muhiim ah
+      oo badeed. Taasi waxay ka dhigeysaa kaabayaasha
+      gaadiidka iyo ganacsiga kuwo muhiim u ah dhaqaalaha.
+      </p>
+
+      <h2>
+      Fursadaha ganacsiga
+      </h2>
+
+      <p>
+      Haddii iskaashiga gobolka uu sii xoogeysto,
+      ganacsatada iyo shirkadaha gaarka loo leeyahay
+      waxay heli karaan fursado dheeraad ah oo ku saabsan
+      suuqyada gobolka.
+      </p>
+
+      <p>
+      Si kastaba ha ahaatee, horumarinta ganacsiga gobolka
+      waxay u baahan tahay amni, kaabayaal wanaagsan,
+      nidaamyo maaliyadeed iyo siyaasado fududeeya
+      ganacsiga.
+      </p>
+
+      <div class="source">
+        <strong>Ilo:</strong>
+        SONNA iyo warbixinno ku saabsan iskaashiga
+        dhaqaale ee Geeska Afrika.
+      </div>
+
+    `
+  }
+
+];
+
+
+
+function today(){
+
+  return new Intl.DateTimeFormat("en-CA",{
+
+    timeZone:"Africa/Mogadishu",
+
+    year:"numeric",
+
+    month:"2-digit",
+
+    day:"2-digit"
+
+  }).format(new Date());
+
+}
+
+
+
+function updateClock(){
+
+  const now = new Date();
+
+  const time = new Intl.DateTimeFormat("so-SO",{
+
+    timeZone:"Africa/Mogadishu",
+
+    hour:"2-digit",
+
+    minute:"2-digit",
+
+    second:"2-digit"
+
+  }).format(now);
+
+  const date = new Intl.DateTimeFormat("so-SO",{
+
+    timeZone:"Africa/Mogadishu",
+
+    weekday:"long",
+
+    year:"numeric",
+
+    month:"long",
+
+    day:"numeric"
+
+  }).format(now);
+
+  document.getElementById("clock").textContent =
+    "🇸🇴 Soomaaliya: " + date + " — " + time;
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
+
+
+
+function escapeHTML(text){
+
+  const div = document.createElement("div");
+
+  div.textContent = text;
+
+  return div.innerHTML;
+
+}
+
+
+
+function card(item){
+
+  return `
+
+    <article class="card">
+
+      <div class="card-content">
+
+        <div class="label">
+          ${escapeHTML(item.category)}
+        </div>
+
+        <div class="date">
+          ${escapeHTML(item.date)}
+        </div>
+
+        <h2>
+          ${escapeHTML(item.title)}
+        </h2>
+
+        <p>
+          ${escapeHTML(item.summary)}
+        </p>
+
+        <button
+          class="read"
+          type="button"
+          onclick="read(${item.id})"
+        >
+          Akhri Warka →
+        </button>
+
+      </div>
+
+    </article>
+
+  `;
+
+}
+
+
+
+function render(list = news){
 
   const t = today();
 
-  const todayNews = list.filter(x => x.date === t);
-  const oldNews = list.filter(x => x.date !== t);
+  const todayNews =
+    list.filter(item => item.date === t);
 
-  // WARARKA MAANTA
+  const oldNews =
+    list
+      .filter(item => item.date !== t)
+      .sort((a,b) => b.date.localeCompare(a.date));
+
+
   document.getElementById("todayNews").innerHTML =
+
     todayNews.length
+
       ? todayNews.map(card).join("")
-      : "<p>Maanta weli war cusub lama darin.</p>";
 
-  // WARARKII HORE
+      : `
+
+        <div class="empty">
+
+          <strong>
+            Maanta weli war cusub lama darin.
+          </strong>
+
+          <p>
+            Wararkii hore waxaad ka heli kartaa qaybta
+            "Wararkii Hore".
+          </p>
+
+        </div>
+
+      `;
+
+
   document.getElementById("oldNews").innerHTML =
-    oldNews.length
-      ? oldNews.map(x => `
-          <div class="archive" onclick="read(${x.id})">
 
-            <strong>${x.title}</strong>
+    oldNews.length
+
+      ? oldNews.map(item => `
+
+          <div
+            class="archive"
+            onclick="read(${item.id})"
+          >
+
+            <strong>
+              ${escapeHTML(item.title)}
+            </strong>
 
             <br>
 
             <small>
-              ${x.category} — ${x.date}
+              ${escapeHTML(item.category)}
+              —
+              ${escapeHTML(item.date)}
             </small>
 
             <br>
 
             <span style="
               display:inline-block;
-              margin-top:8px;
+              margin-top:7px;
               color:#d71920;
               font-weight:bold;
             ">
@@ -37,16 +1150,155 @@ function render(list=news){
             </span>
 
           </div>
+
         `).join("")
+
       : `
-        <div class="archive">
-          <strong>📚 Wararkii Hore</strong>
-          <p style="margin-top:8px;color:#777;">
+
+        <div class="empty">
+
+          <strong>
+            📚 Wararkii Hore
+          </strong>
+
+          <p>
             Warka hore halkan ayuu ka soo muuqan doonaa
             marka warar cusub lagu daro.
           </p>
+
         </div>
+
       `;
+
 }
 
- 
+
+
+function read(id){
+
+  const item =
+    news.find(x => x.id === id);
+
+  if(!item) return;
+
+  document.getElementById("homePage").style.display =
+    "none";
+
+  document.getElementById("articlePage").style.display =
+    "block";
+
+  document.getElementById("articleContent").innerHTML = `
+
+    <div class="label">
+      ${escapeHTML(item.category)}
+    </div>
+
+    <h1>
+      ${escapeHTML(item.title)}
+    </h1>
+
+    <div class="article-meta">
+
+      📅 ${escapeHTML(item.date)}
+      &nbsp; | &nbsp;
+      📰 S & F
+
+    </div>
+
+    <div class="article-content">
+
+      ${item.content}
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+
+function showHome(){
+
+  document.getElementById("articlePage").style.display =
+    "none";
+
+  document.getElementById("homePage").style.display =
+    "block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+
+function searchNews(){
+
+  const q =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+  if(!q){
+
+    render(news);
+
+    return;
+
+  }
+
+  const results =
+    news.filter(item =>
+
+      item.title.toLowerCase().includes(q) ||
+
+      item.summary.toLowerCase().includes(q) ||
+
+      item.category.toLowerCase().includes(q) ||
+
+      item.content.toLowerCase().includes(q)
+
+    );
+
+  render(results);
+
+}
+
+
+
+function filterNews(category){
+
+  if(category === "Dhammaan"){
+
+    render(news);
+
+    return;
+
+  }
+
+  const results =
+    news.filter(item =>
+      item.category === category
+    );
+
+  render(results);
+
+}
+
+
+
+render(news);
+
+</script>
+
+</body>
+</html>
